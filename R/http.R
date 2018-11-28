@@ -13,7 +13,7 @@
 #' @param session_token Optionally, a character string specifying an AWS temporary Session Token to use in signing a request. See \code{\link[aws.signature]{locate_credentials}}.
 #' @param \dots Additional arguments passed to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
 #' @import httr
-#' @importFrom aws.signature signature_v4_auth
+#' @importFrom aws.signature signature_v4_auth locate_credentials
 #' @importFrom xml2 read_xml as_list
 #' @importFrom jsonlite fromJSON
 #' @export
@@ -32,7 +32,11 @@ function(
   ...
 ) {
     # locate and validate credentials
-    credentials <- locate_credentials(key = key, secret = secret, session_token = session_token, region = region, verbose = verbose)
+    credentials <- locate_credentials(key = key, 
+                                      secret = secret, 
+                                      session_token = session_token, 
+                                      region = region, 
+                                      verbose = verbose)
     key <- credentials[["key"]]
     secret <- credentials[["secret"]]
     session_token <- credentials[["session_token"]]
@@ -108,7 +112,11 @@ function(
   ...
 ) {
     # locate and validate credentials
-    credentials <- locate_credentials(key = key, secret = secret, session_token = session_token, region = region, verbose = verbose)
+    credentials <- locate_credentials(key = key,
+                                      secret = secret,
+                                      session_token = session_token,
+                                      region = region,
+                                      verbose = verbose)
     key <- credentials[["key"]]
     secret <- credentials[["secret"]]
     session_token <- credentials[["session_token"]]
