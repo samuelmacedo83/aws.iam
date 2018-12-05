@@ -33,6 +33,7 @@ create_user <- function(user, path, ...) {
         query[["Path"]] <- path
     }
     out <- iamHTTP(query = query, ...)
+
     if (!inherits(out, "aws_error")) {
         out <- structure(out[["CreateUserResponse"]][["CreateUserResult"]][["User"]],
                          class = "iam_user")
